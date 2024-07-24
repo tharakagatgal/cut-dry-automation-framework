@@ -16,11 +16,10 @@ public class TestBase {
     }
 
     public static void initialization(){
-        if (BROWSER_NAME.equalsIgnoreCase("chrome")){
+        if (driver ==null && BROWSER_NAME.equalsIgnoreCase("chrome")){
             ChromeOptions chromeOptions = new ChromeOptions();
-//            chromeOptions.addArguments("--start-maximized");
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
+            chromeOptions.addArguments("--start-maximized");
+            driver = new ChromeDriver(chromeOptions);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
             driver.get(MAIN_URL);
         }
