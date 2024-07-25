@@ -1,5 +1,6 @@
 package com.cutanddry.qa.base;
 
+import com.cutanddry.qa.common.Constants;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -23,6 +24,9 @@ public class TestBase {
             try {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--start-maximized");
+                if (RUN_HEADLESS){
+                    chromeOptions.addArguments("--headless","--window-size=1920,1080");
+                }
                 driver = new ChromeDriver(chromeOptions);
                 driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
                 driver.get(MAIN_URL);

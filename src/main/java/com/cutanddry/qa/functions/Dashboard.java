@@ -9,7 +9,7 @@ public class Dashboard {
         return dashboardPage.isDashboardTextDisplayed();
     }
 
-    public static void navigateToCustomers(){
+    public static void navigateToCustomers() {
         dashboardPage.clickOnCustomers();
     }
 

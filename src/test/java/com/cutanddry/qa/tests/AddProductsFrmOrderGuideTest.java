@@ -13,23 +13,25 @@ import java.io.IOException;
 
 public class AddProductsFrmOrderGuideTest extends TestBase {
     static User user;
+    static String customerId = "16579";
+
     @BeforeMethod
-    public void setUp() throws IOException {
+    public void setUp(){
         initialization();
         user = JsonUtil.readUserLogin();
     }
 
     @Test
-    public static void loginAsDistributor(){
+    public static void loginAsDistributor() {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         Dashboard.navigateToCustomers();
-        Customer.searchCustomerByCode("16579");
-        softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed("16579"),"search error");
-        Customer.clickOnOrderGuide("16579");
+        Customer.searchCustomerByCode(customerId);
+        softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId),"search error");
+        Customer.clickOnOrderGuide(customerId);
         itemName = Customer.getItemNameFirstRow();
         Customer.increaseFirstRowQtyByOne();
         Customer.checkoutItems();
