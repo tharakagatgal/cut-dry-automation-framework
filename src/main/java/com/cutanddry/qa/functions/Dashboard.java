@@ -8,4 +8,12 @@ public class Dashboard {
     public static boolean isUserNavigatedToDashboard(){
         return dashboardPage.isDashboardTextDisplayed();
     }
+
+    public static void navigateToCustomers(){
+        dashboardPage.clickOnCustomers();
+    }
+
+    public static void searchCustomerByCode(){
+
+    }
 }
