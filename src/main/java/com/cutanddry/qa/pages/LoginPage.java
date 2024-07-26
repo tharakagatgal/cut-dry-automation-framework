@@ -18,6 +18,4 @@ public class LoginPage extends TestBase {
         driver.findElement(btn_signIn).click();
     }
 
-
-
 }

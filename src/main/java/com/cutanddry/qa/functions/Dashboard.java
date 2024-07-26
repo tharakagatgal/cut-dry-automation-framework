@@ -13,7 +13,4 @@ public class Dashboard {
         dashboardPage.clickOnCustomers();
     }
 
-    public static void searchCustomerByCode(){
-
-    }
 }

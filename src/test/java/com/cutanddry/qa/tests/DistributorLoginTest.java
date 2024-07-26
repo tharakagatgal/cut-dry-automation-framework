@@ -20,7 +20,6 @@ public class DistributorLoginTest extends TestBase {
     public static void loginAsDistributor() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
-        Dashboard.isUserNavigatedToDashboard();
         softAssert.assertTrue(Dashboard.isUserNavigatedToDashboard(),"login error");
         softAssert.assertAll();
     }
