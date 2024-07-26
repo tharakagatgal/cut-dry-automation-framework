@@ -1,7 +1,6 @@
 package com.cutanddry.qa.data.models;
 
-
-import lombok.Data;
+import lombok.*;
 
 @Data
 public class User {

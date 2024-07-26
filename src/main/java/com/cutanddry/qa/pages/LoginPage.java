@@ -8,7 +8,6 @@ public class LoginPage extends TestBase {
     By txt_password = By.xpath("//input[@placeholder='Password']");
     By btn_signIn = By.xpath("//button[@type='submit']");
 
-
     public void typeEmailOrMobile(String emailOrMobile){
         driver.findElement(txt_emailOrMobile).sendKeys(emailOrMobile);
     }
