@@ -4,6 +4,8 @@
         <classes>
             <class name="com.cutanddry.qa.tests.DistributorLoginTest" />
             <class name="com.cutanddry.qa.tests.AddProductsFrmOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.AddProductsFrmCatalogTest" />
+            <class name="com.cutanddry.qa.tests.EditProductQtyFrmOrderGuideTest" />
         </classes>
     </test>
 </suite>

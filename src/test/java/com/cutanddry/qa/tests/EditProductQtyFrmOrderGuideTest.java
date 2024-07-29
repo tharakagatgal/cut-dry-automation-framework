@@ -6,12 +6,14 @@ import com.cutanddry.qa.functions.Customer;
 import com.cutanddry.qa.functions.Dashboard;
 import com.cutanddry.qa.functions.Login;
 import com.cutanddry.qa.utils.JsonUtil;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.io.IOException;
+import java.util.Optional;
 
-public class AddProductsFrmOrderGuideTest extends TestBase {
+public class EditProductQtyFrmOrderGuideTest extends TestBase {
     static User user;
     static String customerId = "16579";
 
@@ -22,7 +24,7 @@ public class AddProductsFrmOrderGuideTest extends TestBase {
     }
 
     @Test
-    public static void addProductsFrmOrderGuide() {
+    public static void editProductQtyFrmOrderGuide() {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
@@ -33,9 +35,12 @@ public class AddProductsFrmOrderGuideTest extends TestBase {
         softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId),"search error");
         Customer.clickOnOrderGuide(customerId);
         itemName = Customer.getItemNameFirstRow();
-        Customer.increaseFirstRowQtyByOne();
-        Customer.checkoutItems();
-        softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
+        Customer.increaseFirstRowQtyByThree();
+        softAssert.assertEquals(Customer.getItemQtyFirstRow(),"3");
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*3, "price error");
+        Customer.decreaseFirstRowQtyByThree();
+        softAssert.assertEquals(Customer.getItemQtyFirstRow(),"0");
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*0, "price error");
         softAssert.assertAll();
     }
 
