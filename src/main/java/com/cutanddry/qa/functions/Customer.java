@@ -18,8 +18,24 @@ public class Customer {
     public static void increaseFirstRowQtyByOne(){
         customersPage.clickPlusQryFirstRow();
     }
+    public static void decreaseFirstRowQtyByOne(){
+        customersPage.clickMinusQryFirstRow();
+    }
+    public static void increaseFirstRowQtyByThree(){
+        customersPage.clickPlusQryFirstRow();
+        customersPage.clickPlusQryFirstRow();
+        customersPage.clickPlusQryFirstRow();
+    }
+    public static void decreaseFirstRowQtyByThree(){
+        customersPage.clickMinusQryFirstRow();
+        customersPage.clickMinusQryFirstRow();
+        customersPage.clickMinusQryFirstRow();
+    }
     public static void increaseSecondRowQtyByOne(){
         customersPage.clickPlusQrySecondRow();
+    }
+    public static void decreaseSecondRowQtyByOne(){
+        customersPage.clickMinusQrySecondRow();
     }
     public static String getItemNameFirstRow(){
         return customersPage.getItemNameFirstRow();
@@ -30,4 +46,26 @@ public class Customer {
     public static void checkoutItems(){
         customersPage.clickOnCheckoutButton();
     }
+    public static void goToCatalog(){
+        customersPage.clickOnCatalogButton();
+    }
+    public static void searchItemOnCatalog(String item){
+        customersPage.typeToSearchOnCatalog(item);
+    }
+    public static String getFirstElementFrmSearchResults(){
+       return customersPage.getFirstItemNameFrmSearchResults();
+    }
+    public static void addItemToCartCatalog(){
+        customersPage.clickAddToCartCatalog();
+    }
+    public static String getItemQtyFirstRow(){
+        return customersPage.getItemQtyFirstRow();
+    }
+    public static double getItemPriceFirstRow(){
+        return customersPage.getItemPriceFirstRow();
+    }
+    public static double getItemPriceOnCheckoutButton(){
+        return customersPage.getItemPriceOnCheckoutButton();
+    }
+
 }
