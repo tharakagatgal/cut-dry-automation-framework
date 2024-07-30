@@ -1,6 +1,7 @@
 package com.cutanddry.qa.functions;
 
 import com.cutanddry.qa.pages.CustomersPage;
+import lombok.SneakyThrows;
 
 public class Customer {
     static CustomersPage customersPage = new CustomersPage();
@@ -67,5 +68,60 @@ public class Customer {
     public static double getItemPriceOnCheckoutButton(){
         return customersPage.getItemPriceOnCheckoutButton();
     }
-
+    public static void increaseQtyByOneCatalogSearchValueOne(){
+        customersPage.clickPlusQryCatalogSearchValueOne();
+    }
+    public static void increaseQtyByOneCatalogSearchValueTwo(){
+        customersPage.clickPlusQryCatalogSearchValueOne();
+    }
+    public static void decreaseQtyByOneCatalogSearchValueOne(){
+        customersPage.clickMinusQryCatalogSearchValueOne();
+    }
+    public static void decreaseQtyByOneCatalogSearchValueTwo(){
+        customersPage.clickMinusQryCatalogSearchValueTwo();
+    }
+    public static void decreaseQtyByOneCatalogSearchValueThree(){
+        customersPage.clickMinusQryCatalogSearchValueThree();
+    }
+    @SneakyThrows
+    public static void increaseQtyUpToThreeCatalogSearch(){
+        customersPage.clickPlusQryCatalogSearchValueOne();
+        customersPage.clickPlusQryCatalogSearchValueTwo();
+        Thread.sleep(4000);
+    }
+    public static void decreaseQtyByThreeCatalogSearch(){
+        customersPage.clickMinusQryCatalogSearchValueThree();
+        customersPage.clickMinusQryCatalogSearchValueTwo();
+        customersPage.clickMinusQryCatalogSearchValueOne();
+    }
+    public static String getItemQryCatalogSearch(){
+        return customersPage.getItemQryCatalogSearch();
+    }
+    public static Double getItemPriceCatalogSearch(){
+        return customersPage.getItemPriceCatalogSearch();
+    }
+    public static void increaseQtyUpToThreeFirstRowCart(){
+        customersPage.clickPlusQryCartRowOne();
+        customersPage.clickPlusQryCartRowOne();
+    }
+    public static void decreaseQtyUpToZeroFirstRowCart(){
+        customersPage.clickMinusQryCartRowOne();
+        customersPage.clickMinusQryCartRowOne();
+        customersPage.clickMinusQryCartRowOne();
+    }
+    public static double getUnitPriceFirstRowCart(){
+        return customersPage.getUnitPriceFirstRowCart();
+    }
+    public static double getTotalPriceCart(){
+        return customersPage.getTotalPriceCart();
+    }
+    public static void submitOrder(){
+        customersPage.submitOrder();
+        if (customersPage.isDuplicatePopupDisplayed()){
+            customersPage.clickYesDuplicatePopup();
+        }
+    }
+    public static boolean isThankingForOrderPopupDisplayed(){
+        return customersPage.isThankingForOrderPopupDisplayed();
+    }
 }

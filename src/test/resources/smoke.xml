@@ -6,6 +6,9 @@
             <class name="com.cutanddry.qa.tests.AddProductsFrmOrderGuideTest" />
             <class name="com.cutanddry.qa.tests.AddProductsFrmCatalogTest" />
             <class name="com.cutanddry.qa.tests.EditProductQtyFrmOrderGuideTest" />
+            <class name="com.cutanddry.qa.tests.EditProductQtyFrmCatalogTest" />
+            <class name="com.cutanddry.qa.tests.EditProductQtyFrmReviewCartTest" />
+            <class name="com.cutanddry.qa.tests.DistributorOrderSubmissionTest" />
         </classes>
     </test>
 </suite>

@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class AddProductsFrmCatalogTest extends TestBase {
+public class EditProductQtyFrmCatalogTest extends TestBase {
     static User user;
     static String customerId = "16579";
     static String itemName = "Artichoke";
@@ -23,7 +23,7 @@ public class AddProductsFrmCatalogTest extends TestBase {
     }
 
     @Test
-    public static void addProductsFrmCatalog() {
+    public static void editProductQtyFrmCatalog() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -36,8 +36,10 @@ public class AddProductsFrmCatalogTest extends TestBase {
         Customer.searchItemOnCatalog(itemName);
         softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName), "item not found");
         Customer.addItemToCartCatalog();
-        Customer.checkoutItems();
-        softAssert.assertTrue(Customer.getItemNameFirstRow().contains(itemName),"item mismatch");
+        Customer.increaseQtyUpToThreeCatalogSearch();
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceCatalogSearch()*3, "price error-after increase");
+        Customer.decreaseQtyByThreeCatalogSearch();
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),0.0, "price error-after decrease");
         softAssert.assertAll();
     }
 
