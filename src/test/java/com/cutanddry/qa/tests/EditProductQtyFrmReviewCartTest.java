@@ -22,7 +22,7 @@ public class EditProductQtyFrmReviewCartTest extends TestBase {
     }
 
     @Test
-    public static void editProductQtyFrmReviewCart() {
+    public void editProductQtyFrmReviewCart() {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());

@@ -22,7 +22,7 @@ public class DistributorOrderSubmissionTest extends TestBase {
     }
 
     @Test
-    public static void distributorOrderSubmission() {
+    public void distributorOrderSubmission() {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());

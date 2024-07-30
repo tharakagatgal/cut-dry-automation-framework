@@ -24,7 +24,7 @@ public class EditProductQtyFrmOrderGuideTest extends TestBase {
     }
 
     @Test
-    public static void editProductQtyFrmOrderGuide() {
+    public void editProductQtyFrmOrderGuide() {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
