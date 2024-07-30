@@ -11,9 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.util.Optional;
-
-public class EditProductQtyFrmOrderGuideTest extends TestBase {
+public class EditProductQtyFrmReviewCartTest extends TestBase {
     static User user;
     static String customerId = "16579";
 
@@ -24,7 +22,7 @@ public class EditProductQtyFrmOrderGuideTest extends TestBase {
     }
 
     @Test
-    public static void editProductQtyFrmOrderGuide() {
+    public static void editProductQtyFrmReviewCart() {
         String itemName;
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
@@ -35,12 +33,13 @@ public class EditProductQtyFrmOrderGuideTest extends TestBase {
         softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId),"search error");
         Customer.clickOnOrderGuide(customerId);
         itemName = Customer.getItemNameFirstRow();
-        Customer.increaseFirstRowQtyByThree();
-        softAssert.assertEquals(Customer.getItemQtyFirstRow(),"3", "item count error");
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*3, "price error");
-        Customer.decreaseFirstRowQtyByThree();
-        softAssert.assertEquals(Customer.getItemQtyFirstRow(),"0","item count error");
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*0, "price error");
+        Customer.increaseFirstRowQtyByOne();
+        Customer.checkoutItems();
+        softAssert.assertEquals(Customer.getItemNameFirstRow(),itemName,"item mismatch");
+        Customer.increaseQtyUpToThreeFirstRowCart();
+        softAssert.assertEquals(Customer.getTotalPriceCart(),Customer.getUnitPriceFirstRowCart()*3,"error in total - after increase");
+        Customer.decreaseQtyUpToZeroFirstRowCart();
+        softAssert.assertEquals(Customer.getTotalPriceCart(),0.0,"error in total - after decrease");
         softAssert.assertAll();
     }
 

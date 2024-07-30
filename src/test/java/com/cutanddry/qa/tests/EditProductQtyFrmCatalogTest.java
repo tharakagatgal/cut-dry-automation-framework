@@ -11,11 +11,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.util.Optional;
-
-public class EditProductQtyFrmOrderGuideTest extends TestBase {
+public class EditProductQtyFrmCatalogTest extends TestBase {
     static User user;
     static String customerId = "16579";
+    static String itemName = "Artichoke";
 
     @BeforeMethod
     public void setUp(){
@@ -24,8 +23,7 @@ public class EditProductQtyFrmOrderGuideTest extends TestBase {
     }
 
     @Test
-    public static void editProductQtyFrmOrderGuide() {
-        String itemName;
+    public static void editProductQtyFrmCatalog() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
@@ -34,13 +32,14 @@ public class EditProductQtyFrmOrderGuideTest extends TestBase {
         Customer.searchCustomerByCode(customerId);
         softAssert.assertTrue(Customer.isCustomerSearchResultByCodeDisplayed(customerId),"search error");
         Customer.clickOnOrderGuide(customerId);
-        itemName = Customer.getItemNameFirstRow();
-        Customer.increaseFirstRowQtyByThree();
-        softAssert.assertEquals(Customer.getItemQtyFirstRow(),"3", "item count error");
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*3, "price error");
-        Customer.decreaseFirstRowQtyByThree();
-        softAssert.assertEquals(Customer.getItemQtyFirstRow(),"0","item count error");
-        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceFirstRow()*0, "price error");
+        Customer.goToCatalog();
+        Customer.searchItemOnCatalog(itemName);
+        softAssert.assertTrue(Customer.getFirstElementFrmSearchResults().contains(itemName), "item not found");
+        Customer.addItemToCartCatalog();
+        Customer.increaseQtyUpToThreeCatalogSearch();
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),Customer.getItemPriceCatalogSearch()*3, "price error-after increase");
+        Customer.decreaseQtyByThreeCatalogSearch();
+        softAssert.assertEquals(Customer.getItemPriceOnCheckoutButton(),0.0, "price error-after decrease");
         softAssert.assertAll();
     }
 
