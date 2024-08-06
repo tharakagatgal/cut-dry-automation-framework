@@ -23,7 +23,7 @@ public class EditProductQtyFrmCatalogTest extends TestBase {
     }
 
     @Test
-    public static void editProductQtyFrmCatalog() {
+    public void editProductQtyFrmCatalog() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();

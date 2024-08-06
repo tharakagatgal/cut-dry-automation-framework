@@ -23,7 +23,7 @@ public class AddProductsFrmCatalogTest extends TestBase {
     }
 
     @Test
-    public static void addProductsFrmCatalog() {
+    public void addProductsFrmCatalog() {
         SoftAssert softAssert = new SoftAssert();
         Login.loginAsDistributor(user.getEmailOrMobile(), user.getPassword());
         Dashboard.isUserNavigatedToDashboard();
