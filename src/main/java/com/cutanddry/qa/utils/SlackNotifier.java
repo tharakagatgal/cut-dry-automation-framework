@@ -8,11 +8,11 @@ import java.util.List;
 import org.json.JSONObject;
 
 public class SlackNotifier {
-    private static final String WEBHOOK_URL = "https://hooks.slack.com/services/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";
+    private static final String WEBHOOK_URL = "https://hooks.slack.com/services/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";
     //https://hooks.slack.com/services/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
 
     // Update this with the actual URL where the report is hosted
-    private static final String REPORT_URL = "http://example.com/reports/emailable-report.html";
+    private static final String REPORT_URL = "https://app.circleci.com/pipelines/github/GetCodifyAI/cut-and-dry?branch=master";
 
     public static void sendSlackAlert(int totalTests, int passedTests, int failedTests, String environment, List<String> passedTestCases, List<String> failedTestCases) {
         try {
@@ -23,7 +23,7 @@ public class SlackNotifier {
                     + "\"type\": \"section\","
                     + "\"text\": {"
                     + "\"type\": \"mrkdwn\","
-                    + "\"text\": \"* Distributor - Smoke Suite Execution Completed!*\""
+                    + "\"text\": \"*Distributor - Smoke Suite Execution Completed!*\""
                     + "}"
                     + "},"
                     + "{"
@@ -35,7 +35,7 @@ public class SlackNotifier {
                     + "},"
                     + "{"
                     + "\"type\": \"mrkdwn\","
-                    + "\"text\": \"*Total Executions:*\\n" + totalTests + "\""
+                    + "\"text\": \"*Total Test Executions:*\\n" + totalTests + "\""
                     + "},"
                     + "{"
                     + "\"type\": \"mrkdwn\","
@@ -87,6 +87,7 @@ public class SlackNotifier {
             // Check the response code
             int responseCode = connection.getResponseCode();
             if (responseCode != 200) {
+                System.out.println("Slack alert not sent: response code - "+responseCode);
                 throw new RuntimeException("Failed to send Slack alert, response code: " + responseCode);
             }
 
