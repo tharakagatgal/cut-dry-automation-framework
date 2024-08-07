@@ -1,6 +1,7 @@
 package com.cutanddry.qa.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class DashboardPage extends LoginPage{
     By txt_dashboard = By.xpath("//h3[text()='Dashboard']");
@@ -8,6 +9,11 @@ public class DashboardPage extends LoginPage{
 
 
     public boolean isDashboardTextDisplayed(){
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(txt_dashboard));
+        } catch (Exception e){
+            return false;
+        }
         return driver.findElement(txt_dashboard).isDisplayed();
     }
     public void clickOnCustomers(){
